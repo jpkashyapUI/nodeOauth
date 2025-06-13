@@ -1,0 +1,55 @@
+list of response_type in oAuth
+
+1. Code
+
+App redirects to Google's auth endpoint with response_type=code
+
+Google returns a code to the redirect URI
+
+App exchanges the code for tokens (access token + optionally refresh token)
+
+2. token
+
+Returns: Access token directly in the URL fragment
+
+3. id_token
+
+Returns: ID token (JWT that contains user info)
+
+Used in: OpenID Connect flows (e.g., for authentication, not just authorization)
+
+4. code token
+
+Returns: Both authorization code and access token
+
+5.  code id_token, token id_token, code token id_token
+
+returns: Combinations of code, access token, and ID token
+
+
+
+list of access_type in oAuth login
+
+1. access_type=online
+
+Return short-lived access_token, perform quick single operation
+
+2. access_type=offline
+
+Required if your app needs long-term access to the user’s dataand returns refresh_token
+
+
+
+list of promt in oAuth login
+
+1. none
+2. consent
+3. select_account
+4. login
+
+
+
+
+
+
+

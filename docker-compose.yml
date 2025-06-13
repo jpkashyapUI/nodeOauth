@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+
+  backend:
+    container_name: node_app
+    build: .
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    command: node --inspect=0.0.0.0:9229 app.js
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: social
+
+volumes:
+  mysql_data:

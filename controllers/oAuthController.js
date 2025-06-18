@@ -1,5 +1,6 @@
 const querystring = require('querystring');
-const connectDB = require('../config/db')
+const connectDB = require('../config/db');
+const axios = require('axios');
 
 const loginControls = async (req, res) => {
     try {
@@ -59,13 +60,12 @@ const Callback = async (req, res) => {
         grant_type: 'authorization_code',
     });
 
-    const tokenResponse = await fetch(authConfig.accesstoken_url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': postData.length,
-        },
-        body: postData,
+    const tokenResponse = await axios.post(authConfig.accesstoken_url, {
+        code,
+        client_id: authConfig.app_id,
+        client_secret: authConfig.secret_key,
+        redirect_uri: authConfig.callback_url,
+        grant_type: 'authorization_code',
     });
     const tokenData = await tokenResponse.json();
     const access_token = tokenData.access_token;

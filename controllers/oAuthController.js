@@ -72,6 +72,7 @@ const Callback = async (req, res) => {
     console.log(tokenData)
     const access_token = tokenData.access_token;
 
+
     // Get user info
     const userInfoResponse = await fetch(authConfig.userinfo_api, {
         headers: {
@@ -79,8 +80,9 @@ const Callback = async (req, res) => {
         },
 
     });
+    console.log(userInfoResponse)
     const userData = await userInfoResponse.json();
-
+    console.log(userData)
 
     const { id, email, name, picture } = userData;
 

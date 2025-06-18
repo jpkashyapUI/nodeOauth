@@ -35,6 +35,7 @@ const consent = async (req, res) => {
             scope: authConfig.scopes,
             access_type: 'offline',
             prompt: 'consent',
+            client:req.params.loginType
         });
 
         res.redirect(redirect_uri);

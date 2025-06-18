@@ -69,6 +69,7 @@ const Callback = async (req, res) => {
     });
     console.log(tokenResponse)
     const tokenData = await tokenResponse.json();
+    console.log(tokenData)
     const access_token = tokenData.access_token;
 
     // Get user info

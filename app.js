@@ -9,6 +9,7 @@ app.set('view engine', 'ejs');
 const PORT = 3000;
 
 app.use(session({
+  name:'clientSession',
   secret: 'socialLogin',
   resave: false,
   saveUninitialized: false,
